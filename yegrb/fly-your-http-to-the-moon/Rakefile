@@ -2,3 +2,13 @@ file 'talk.html' => ['talk.md', 'style.css'] do |t|
   sh "slidedown #{t.prerequisites.first} > #{t.name}"
 end
 task :default => 'talk.html'
+
+task :upload => 'talk.html' do
+  TALK = 'fly-your-http-to-the-moon'
+  DEST = File.expand_path("~/dev/github/talks-pages/#{TALK}")
+  sh "cp *.png *.jpg *.css #{DEST}"
+  sh "cp talk.html #{DEST}/index.html"
+  Dir.chdir(DEST) do
+    sh "git add . && git ci -a -m 'update #{TALK}' && git push"
+  end
+end
