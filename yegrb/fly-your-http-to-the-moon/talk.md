@@ -51,8 +51,8 @@ Software engineer (EIT)
 ## > HTTP Methods
 ## Static Files and Views
 ## Routing and Parameters
-## Helpers and Filters
 ## Configuration and Error Handling
+## Helpers and Filters
 ## Middleware and Testing
 ## Gang Vocals (All together now!)
 
@@ -86,8 +86,8 @@ Software engineer (EIT)
 ## HTTP Methods
 ## > Static Files and Views
 ## Routing and Parameters
-## Helpers and Filters
 ## Configuration and Error Handling
+## Helpers and Filters
 ## Middleware and Testing
 ## Gang Vocals (All together now!)
 
@@ -98,6 +98,10 @@ Software engineer (EIT)
 
     get '/' do
       haml(:index)
+    end
+
+    get '/style.css' do
+      sass(:style)
     end
 @@@
 
@@ -133,23 +137,13 @@ Software engineer (EIT)
 
 !SLIDE
 
-@@@ ruby
-    require 'haml'
-
-    get '/style.css' do
-      sass(:style)
-    end
-@@@
-
-!SLIDE
-
 ## HTTP Methods
 ## Static Files and Views
 ## > Routing and Parameters
-## Helpers and Filters
 ## Configuration and Error Handling
+## Helpers and Filters
 ## Middleware and Testing
-## Gang Vocals (All together now!)
+## Gang Vocals
 
 !SLIDE
 
@@ -157,6 +151,137 @@ Software engineer (EIT)
     get '/archive/:year/:month/:day/:title' do |year, month, day, title|
        @post = Post.find(...)
        haml(:post, :locals => { :post => @post })
+    end
+@@@
+
+!SLIDE
+
+@@@ ruby
+    get %r|/(\d{4})/(\d{2})/(\d{2})/[\w\d\-+ ]+| do |year, month, day, title|
+       @post = Post.find(...)
+       haml(:post, :locals => { :post => @post })
+    end
+@@@
+
+!SLIDE
+
+## HTTP Methods
+## Static Files and Views
+## Routing and Parameters
+## > Configuration and Error Handling
+## Helpers and Filters
+## Middleware and Testing
+## Gang Vocals
+
+!SLIDE
+
+@@@ ruby
+    set(:cache_time, 600)
+    disable(:caching) # same as 'set(:caching, false)'
+
+    configure :production do
+      error do
+        'My bad...'
+      end
+
+      enable(:caching)
+    end
+
+    not_found do
+      haml(:not_found)
+    end
+@@@
+
+!SLIDE
+
+## HTTP Methods
+## Static Files and Views
+## Routing and Parameters
+## Configuration and Error Handling
+## > Helpers and Filters
+## Middleware and Testing
+## Gang Vocals
+
+!SLIDE
+
+@@@ ruby
+    helpers do
+      def gravatar_url(email, size = 120)
+        digest = Digest::MD5.hexdigest(email)
+        "http://www.gravatar.com/avatar/#{digest}.png?s=#{size}"
+      end
+
+      include BrassSectionHelpers
+    end
+@@@
+
+!SLIDE
+
+@@@ ruby
+    configure :production do
+      before do
+        expires(options.cache_time)
+      end
+    end
+@@@
+
+!SLIDE
+
+## HTTP Methods
+## Static Files and Views
+## Routing and Parameters
+## Configuration and Error Handling
+## Helpers and Filters
+## > Middleware and Testing
+## Gang Vocals
+
+!SLIDE
+
+@@@ ruby
+    use Rack::Etag
+@@@
+
+!SLIDE
+
+## Request &rarr; Etag Middleware &rarr; Application
+
+!SLIDE
+
+@@@ ruby
+    require 'app'
+    require 'rack/test'
+
+    class MyAppTest < Test::Unit::TestCase
+      include Rack::Test::Methods
+
+      def app
+        Sinatra::Application
+      end
+
+      def test_hello_world
+        get '/'
+        assert_equal 'Hello World!', last_response.body
+      end
+    end
+@@@
+
+!SLIDE
+
+@@@ ruby
+    require File.dirname(__FILE__) + '/spec_helper'
+
+    describe 'My App' do
+      include Rack::Test::Methods
+
+      def app
+        @app ||= Sinatra::Application
+      end
+
+      it 'should say hello world' do
+        get '/'
+        last_response.should be_ok
+        last_response.body.should == 'Hello, World!'
+      end
     end
 @@@
 
