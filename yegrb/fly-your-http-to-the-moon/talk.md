@@ -31,7 +31,7 @@ Software engineer (EIT)
 
 !SLIDE
 
-# Fast &rarr; Simple &rarr; Easy
+# Fast &rarr; Simple &rarr; Easy &rarr; Fun
 
 !SLIDE
 
@@ -47,6 +47,14 @@ Software engineer (EIT)
       'Hello, World!'
     end
 @@@
+
+!SLIDE
+
+    $ ruby app.rb
+    == Sinatra/1.0.a has taken the stage on 4567 for development with backup from Thin
+    >> Thin web server (v1.2.5 codename This Is Not A Web Server)
+    >> Maximum connections set to 1024
+    >> Listening on 0.0.0.0:4567, CTRL+C to stop
 
 !SLIDE
 
@@ -309,3 +317,9 @@ Software engineer (EIT)
 !SLIDE
 
 # ...Cookies?
+
+!SLIDE
+
+# Photos
+
+[http://www.flickr.com/photos/rnyk/2493099076/](http://www.flickr.com/photos/rnyk/2493099076/)
