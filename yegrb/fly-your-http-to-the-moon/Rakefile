@@ -1,0 +1,4 @@
+file 'talk.html' => ['talk.md', 'style.css'] do |t|
+  sh "slidedown #{t.prerequisites.first} > #{t.name}"
+end
+task :default => 'talk.html'
