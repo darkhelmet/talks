@@ -322,6 +322,17 @@ Software engineer (EIT)
 
 !SLIDE
 
+# Thanks!
+
+<br />
+
+## Edmonton Rubyists
+## Github
+## Heroku
+## Sinatra Team
+
+!SLIDE
+
 # Photos
 
 [http://www.flickr.com/photos/rnyk/2493099076/](http://www.flickr.com/photos/rnyk/2493099076/)
