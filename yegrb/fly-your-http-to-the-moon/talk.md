@@ -2,7 +2,9 @@
 
 # Fly your HTTP to the moon
 
-Sinatra in 10 minutes
+Edmonton Rubyists
+
+March 2, 2010
 
 !SLIDE
 
