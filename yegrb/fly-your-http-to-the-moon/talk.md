@@ -12,6 +12,8 @@ Software engineer (EIT)
 
 [http://blog.darkhax.com/](http://blog.darkhax.com/)
 
+[http://github.com/darkhelmet](http://github.com/darkhelmet)
+
 [@darkhelmetlive](http://twitter.com/darkhelmetlive)
 
 !SLIDE
@@ -29,7 +31,7 @@ Software engineer (EIT)
 
 !SLIDE
 
-## Fast &rarr; Simple &rarr; Easy
+# Fast &rarr; Simple &rarr; Easy
 
 !SLIDE
 
@@ -54,7 +56,7 @@ Software engineer (EIT)
 ## Configuration and Error Handling
 ## Helpers and Filters
 ## Middleware and Testing
-## Gang Vocals (All together now!)
+## Gang Vocals
 
 !SLIDE
 
@@ -89,7 +91,7 @@ Software engineer (EIT)
 ## Configuration and Error Handling
 ## Helpers and Filters
 ## Middleware and Testing
-## Gang Vocals (All together now!)
+## Gang Vocals
 
 !SLIDE
 
@@ -97,11 +99,11 @@ Software engineer (EIT)
     require 'haml'
 
     get '/' do
-      haml(:index)
+      haml(:index) # renders 'views/index.haml'
     end
 
     get '/style.css' do
-      sass(:style)
+      sass(:style) # renders 'views/style.sass'
     end
 @@@
 
@@ -148,7 +150,7 @@ Software engineer (EIT)
 !SLIDE
 
 @@@ ruby
-    get '/archive/:year/:month/:day/:title' do |year, month, day, title|
+    get '/archive/:year/:month/:day/:slug' do |year, month, day, slug|
        @post = Post.find(...)
        haml(:post, :locals => { :post => @post })
     end
@@ -157,7 +159,7 @@ Software engineer (EIT)
 !SLIDE
 
 @@@ ruby
-    get %r|/(\d{4})/(\d{2})/(\d{2})/[\w\d\-+ ]+| do |year, month, day, title|
+    get %r|/(\d{4})/(\d{2})/(\d{2})/([\w\d\-+ ]+)| do |year, month, day, slug|
        @post = Post.find(...)
        haml(:post, :locals => { :post => @post })
     end
@@ -176,7 +178,7 @@ Software engineer (EIT)
 !SLIDE
 
 @@@ ruby
-    set(:cache_time, 600)
+    set(:cache_time, 600) # we'll access this later
     disable(:caching) # same as 'set(:caching, false)'
 
     configure :production do
@@ -284,6 +286,20 @@ Software engineer (EIT)
       end
     end
 @@@
+
+!SLIDE
+
+## HTTP Methods
+## Static Files and Views
+## Routing and Parameters
+## Configuration and Error Handling
+## Helpers and Filters
+## Middleware and Testing
+## > Gang Vocals
+
+!SLIDE
+
+## [http://github.com/darkhelmet/darkblog](http://github.com/darkhelmet/darkblog)
 
 !SLIDE
 
