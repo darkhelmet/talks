@@ -191,16 +191,16 @@ Software engineer (EIT)
     set(:cache_time, 600) # we'll access this later
     disable(:caching) # same as 'set(:caching, false)'
 
+    not_found do
+      haml(:not_found)
+    end
+
     configure :production do
       error do
         'My bad...'
       end
 
       enable(:caching)
-    end
-
-    not_found do
-      haml(:not_found)
     end
 @@@
 
