@@ -33,7 +33,7 @@ Software engineer (EIT)
 
 !SLIDE
 
-# Fast &rarr; Simple &rarr; Easy &rarr; Fun
+# Simple &rarr; Fast &rarr; Easy &rarr; Fun
 
 !SLIDE
 
